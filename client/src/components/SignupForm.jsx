@@ -12,6 +12,7 @@ const SignupForm = () => {
         email: '', 
         password: '',   
     });
+  
     //form validation state
     const [validated] = useState(false);
     //alert state
