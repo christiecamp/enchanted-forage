@@ -11,7 +11,6 @@ const resolvers = {
                 const userData = await User.findOne({ _id: context.user.id })
                 .select('-__v -password')
                 .populate('savedBooks');
-
                 return userData;
             }
             throw new AuthenticationError('you are not logged in');
@@ -33,7 +32,6 @@ const resolvers = {
             }
             //auth token
             const token = signToken(user);
-
             return { token, user };
         },
         //create user
@@ -41,21 +39,34 @@ const resolvers = {
         addUser: async (parent, { username, email, password }) => {
             const user = await User.create({ username, email, password });
             const token = signToken(user);
-
             return { token, user };
         },
-        //save book
+        //update user - save book
         //saveBook(input: BookInput): User
         saveBook: async (parent, { input }, context) => {
-        
-
-
+            if (context.user) {
+                const updatedUser = await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { savedBooks: input } },
+                    { new: true }
+                );
+                return updatedUser;
+            }
+            throw new AuthenticationError('you are not logged in');
         },
         //removeBook
         //removeBook(bookId: ID!): User
         removeBook: async (parent, { bookId }, context) => {
-            
-        }
+            if (context.user) {
+                const updatedUser = await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { savedBooks: { bookId } } },
+                    { new: true }
+                );
+                return updatedUser;
+            }
+            throw new AuthenticationError('you are not logged in');
+        },
     },
 };
 
