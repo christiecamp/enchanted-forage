@@ -16,6 +16,7 @@ const resolvers = {
             throw new AuthenticationError('you are not logged in');
         }
     },
+
     //mutation - hook that handles server-side mutations to create/update/delete data or perform server-side-effects 
     Mutation: {
         //login
@@ -34,6 +35,7 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
+
         //create user
         //addUser(username: String!, email: String!, password: String!): Auth
         addUser: async (parent, { username, email, password }) => {
@@ -41,6 +43,7 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
+
         //update user - save book
         //saveBook(input: BookInput): User
         saveBook: async (parent, { input }, context) => {
@@ -54,6 +57,7 @@ const resolvers = {
             }
             throw new AuthenticationError('you are not logged in');
         },
+        
         //removeBook
         //removeBook(bookId: ID!): User
         removeBook: async (parent, { bookId }, context) => {
