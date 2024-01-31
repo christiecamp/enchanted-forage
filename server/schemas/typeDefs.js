@@ -1,7 +1,7 @@
 const { gql } = require('apollo-server-express');
 const { typeDefs } = require('.');
 
-//typeDefs is a string that defines the shape of the data & specifies what queries can be used to fetch the data
+//typeDefs - string that defines data shape & specifies queries that can be used
 //mutations are used to modify data
 const typeDefs = gql`
     input BookInput {
