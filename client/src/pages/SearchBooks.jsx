@@ -5,7 +5,7 @@ import {
   Form,
   Button,
   Card,
-  CardColumns,
+  Row,
 } from 'react-bootstrap';
 
 //graphql import
@@ -122,7 +122,7 @@ const SearchBooks = () => {
                     ? `viewing ${searchedBooks.length} results:`
                     : 'forage for a fantasy to begin'}
             </h2>
-            <CardColumns>
+            <Row>
                 {searchedBooks.map((book) => {
                     return (
                         <Card key={book.bookId} border='dark'>
@@ -147,7 +147,7 @@ const SearchBooks = () => {
                         </Card>
                     );
                 })}
-            </CardColumns>
+            </Row>
         </Container>
         </>
     );

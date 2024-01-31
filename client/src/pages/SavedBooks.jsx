@@ -3,7 +3,7 @@ import {
     Container,
     Card,
     Button,
-    CardColumns
+    Col,
 } from 'react-bootstrap';
 
 //graphql imports
@@ -70,7 +70,7 @@ const SavedBooks = () => {
                     ? `viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'fantasy' : 'fantasies'}:`
                     : 'no saved fantasies!'}
             </h2>
-            <CardColumns>
+            <Col>
                 {userData.savedBooks.map((book) => {
                     return (
                         <Card border='dark' key={book.bookId}>
@@ -86,7 +86,7 @@ const SavedBooks = () => {
                         </Card>
                     );
                 })}
-            </CardColumns>
+            </Col>
         </Container>
     </>
     );

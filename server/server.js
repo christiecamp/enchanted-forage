@@ -17,32 +17,69 @@ const server = new ApolloServer({
     context: authMiddleware
 });
 
+mermaid.use(express.urlencoded({ extended: true }));
+mermaid.use(express.json());
+
+//serve up static assets in production
+if (process.env.NODE_ENV === 'production') {
+    mermaid.use(express.static(path.join(__dirname, '../client/dist')));
+}
+
+
 //create instance of ApolloServer and pass in schema data
 const startApolloServer = async () =>{
     await server.start();
 
-    mermaid.use(express.urlencoded({ extended: true }));
-    mermaid.use(express.json());
-
     //integrate Apollo server with Express application as middleware
-    // server.applyMiddleware({ mermaid });
-    mermaid.use('/graphql', expressMiddleware(server));
-
-    //serve up static assets in production
-    if (process.env.NODE_ENV === 'production') {
-        mermaid.use(express.static(path.join(__dirname, '../client/build')));
-    }
+    server.applyMiddleware({ app: mermaid });
 
     mermaid.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../client/build/index.html'));
+        res.sendFile(path.join(__dirname, '../client/dist/index.html'));
     });
 
     fins.once('open', () => {
         mermaid.listen(PORT, () => {
-            console.log(`🌊 Server running on port ${PORT}!`);
-            console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+            console.log(`
+    =================================================
+    ********** ENCHANTED FORAGE's BACK END **********
+    =================================================
+                . o  O
+            O  () o ().o
+            o O.    _
+       ___  .   ,~'~'~._
+       '-,_l  o(((ll ~ _~'~._,,,_
+           llO . >>'-, ~ _~ ,~'~ 
+            l'.o :__  /,-~,,~'
+             l '.__;  )--.
+               '.___ l/    '.
+                    )&,   ._ '.
+                    l_l_  ( '. ;
+                      '.   '._'.;--,
+                        l_.-;;;.l,-'
+                         l;;;;;;;.
+                          l;;;;;;;l
+                           ';;;;;;;l
+                            ';;;;;;;. _______
+                              '~;;;;;;.    _,'
+                                 '~.;;  ,-'
+                                    l  ;
+                                     l ;      
+                                      l;
+
+                ==============================
+                ** your next fantasy awaits **
+                ==============================      
+
+                    join in on the adventure:
+                    http://localhost:${PORT}
+
+                    graphql path: 
+                    http://localhost:${PORT}${server.graphqlPath}
+
+            `);
         });
     });
 };
 
 startApolloServer(typeDefs, resolvers);
+                            
