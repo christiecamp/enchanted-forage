@@ -11,7 +11,7 @@ import { useQuery, useMutation } from '@apollo/client';
 //import queries and mutations
 import { GET_ME } from '../utils/queries';
 import { REMOVE_BOOK } from '../utils/mutations';
-//import helper function
+//import helper
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 
