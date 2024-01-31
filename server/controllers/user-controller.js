@@ -41,10 +41,35 @@ module.exports = {
         //sign token
         const token = signToken(user);
         res.json({ token, user });
-    }
-
+    },
 
     //save book - add to user's `savedBooks` field
-    //remove book - pull & remove from user's `savedBooks` field 
+    //user - 'req.user' from auth middleware 
+    async saveBook({ user, body }, res) {
+        console.log(user);
+        try {
+            const updatedUser = await User.findByIdAndUpdate(
+                { _id: user._id },
+                { $addToSet: { savedBooks: body } },
+                { new: true, runValidators: true }
+            );
+            return res.json(updatedUser);
+        } catch(err) {
+            console.log(err);
+            return res.status(400).json(err);
+        }
+    },
 
+    //remove book - pull & remove from user's `savedBooks` field 
+    async deleteBook({ user, params }, res) {
+        const updatedUser = await User.findByIdAndUpdate(
+            { _id: user._id },
+            { $pull: { savedBooks: { bookId: params.bookId } } },
+            { new: true }
+        );
+        if (!updatedUser) {
+            return res.status(404).json({ message: 'user not found' });
+        }
+        return res.json(updatedUser);
+    },
 };
