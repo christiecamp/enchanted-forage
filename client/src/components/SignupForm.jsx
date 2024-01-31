@@ -48,10 +48,7 @@ const SignupForm = () => {
 
     //execute mutation
     try {
-      const { data } = await addUser({
-        variables: { ...userFormData },
-      });
-      console.log(data);
+      const { data } = await addUser({ variables: { ...userFormData } });
       Auth.login(data.addUser.token);
     } catch (err) {
       console.error(err);
@@ -63,7 +60,7 @@ const SignupForm = () => {
       email: '',
       password: '',
     });
-  };
+  }
 
   return (
     <>

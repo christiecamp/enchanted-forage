@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import {
-  Container,
-  Col,
-  Form,
-  Button,
-  Card,
-  Row,
+    Container,
+    Col,
+    Form,
+    Button,
+    Card,
+    Row,
 } from 'react-bootstrap';
 
 //graphql import
@@ -48,7 +48,7 @@ const SearchBooks = () => {
         //api call
         try {
             const response = await searchGoogleBooks(searchInput);
-            if (!response.ok) {
+            if (!response) {
                 throw new Error('something went wrong!');
             }
         //convert response to json
@@ -95,7 +95,7 @@ const SearchBooks = () => {
             <Container>
                 <h1>Forage for Fantasies</h1>
                 <Form onSubmit={handleFormSubmit}>
-                    <Form.Row>
+                    <Row>
                         <Col xs={12} md={8}>
                             <Form.Control
                                 name='searchInput'
@@ -111,7 +111,7 @@ const SearchBooks = () => {
                             submit
                         </Button>
                         </Col>
-                    </Form.Row>
+                    </Row>
                 </Form>
             </Container>
         </div>
