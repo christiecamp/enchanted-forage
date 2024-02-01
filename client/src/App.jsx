@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import {
     ApolloClient,
     ApolloProvider,
@@ -7,9 +7,6 @@ import {
     InMemoryCache,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-
-import SearchBooks from './pages/SearchBooks';
-import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
 
 //construct main GraphQL API endpoint
@@ -42,14 +39,8 @@ const client = new ApolloClient({
 function App() {
     return (
         <ApolloProvider client={client}>
-            <>
                 <Navbar />
-                <Routes>
-                    <Route path='*' element={<SearchBooks />} />
-                    <Route path='/saved' element={<SavedBooks />} />
-                    <Route path='*' element={<h1 className='display-2'>Wrong page!</h1>} />
-                </Routes>
-            </>
+                <Outlet />
         </ApolloProvider>
     ); 
 }
