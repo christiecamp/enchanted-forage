@@ -1,15 +1,21 @@
-require('dotenv').config();
 const jwt = require('jsonwebtoken');
+const { GraphQLError } = require('graphql');
 
 //set token secret
-const secret = process.env.SECRET;
+const secret = 'mermaidsecret123';
 const expiration = '2h';
 
 module.exports = {
+    AuthenticationError: new GraphQLError('could not authenticate user', {
+        extensions: {
+            code: 'UNAUTHENTICATED',
+        },
+    }),
+
     //authenticated routes
     authMiddleware: function({ req }) {
         //token sent to req.query or header
-        let token = req.query.token || req.headers.authorization;
+        let token = req.body.token || req.query.token || req.headers.authorization;
         //separate "Bearer" from "<tokenvalue>"
         if (req.headers.authorization) {
             token = token.split(' ').pop().trim();

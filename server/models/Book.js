@@ -2,7 +2,9 @@ const { Schema } = require('mongoose');
 
 //subdocument schema for books
 const bookSchema = new Schema({
-    authors: [{ type: String }],
+    authors: [
+        { type: String },
+    ],
     description: {
         type: String,
         required: true,

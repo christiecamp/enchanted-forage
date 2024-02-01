@@ -1,6 +1,5 @@
 const { User } = require('../models');
-const { AuthenticationError } = require('apollo-server-express');
-const { signToken } = require('../utils/auth');
+const { signToken, AuthentictionError } = require('../utils/auth');
 
 //resolvers - functions that actually execute the queries and mutations
 const resolvers = {
@@ -13,7 +12,7 @@ const resolvers = {
                 .populate('savedBooks');
                 return userData;
             }
-            throw new AuthenticationError('you are not logged in');
+            throw new Error('you are not logged in');
         }
     },
 
@@ -24,12 +23,12 @@ const resolvers = {
             const user = await User.findOne({ email });
             //check username credentials
             if (!user) {
-                throw new AuthenticationError('username/password incorrect');
+                throw AuthenticationError;
             }
             const correctPw = await user.isCorrectPassword(password);
             //check password credentials
             if (!correctPw) {
-                throw new AuthenticationError('username/password incorrect');
+                throw AuthenticationError;
             }
             //auth token
             const token = signToken(user);
@@ -48,7 +47,7 @@ const resolvers = {
         //saveBook(input: BookInput): User
         saveBook: async (parent, { input }, context) => {
             if (context.user) {
-                const updatedUser = await User.findByIdAndUpdate(
+                const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $push: { savedBooks: input } },
                     { new: true }
@@ -62,7 +61,7 @@ const resolvers = {
         //removeBook(bookId: ID!): User
         removeBook: async (parent, { bookId }, context) => {
             if (context.user) {
-                const updatedUser = await User.findByIdAndUpdate(
+                const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $pull: { savedBooks: { bookId } } },
                     { new: true }

@@ -11,7 +11,6 @@ const userSchema = new Schema(
         type: String,
         required: true,
         unique: true,
-        trim: true, //remove whitespace
     },
     email: {
         type: String,
@@ -22,7 +21,6 @@ const userSchema = new Schema(
     password: {
         type: String,
         required: true,
-        // minlength: 8, //password must be at least 8 characters long
     },
     //associate user with saved books
     savedBooks: [bookSchema],
