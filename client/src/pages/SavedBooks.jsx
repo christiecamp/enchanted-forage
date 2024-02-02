@@ -8,20 +8,20 @@ import {
 
 //graphql imports
 import { useQuery, useMutation } from '@apollo/client';
-//import queries and mutations
-import { GET_ME } from '../utils/queries';
-import { REMOVE_BOOK } from '../utils/mutations';
 //import helper
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
+//import queries and mutations
+import { GET_ME } from '../utils/queries';
+import { REMOVE_BOOK } from '../utils/mutations';
 
 const SavedBooks = () => {
     //useQuery hook to make query request
     const { loading, data, error } = useQuery(GET_ME);
+    //get userData from query
+    const userData = data?.me;
     //useMutation hook to make mutation request
     const [removeBook, { error: mutationError }] = useMutation(REMOVE_BOOK);
-    //destructure userData from data object
-    const userData = data?.me || {};
 
     console.log(userData);
 
@@ -33,37 +33,39 @@ const SavedBooks = () => {
             return false;
         }
         //make mutation request
-        try {
-            const { data } = await removeBook({ variables: { bookId } });
+        try {    
+            const { data } = await removeBook({ 
+                variables: { bookId },
+            });
             //check if data exists
             if (!data) {
-                throw new Error('error deleting fantasy');
+                throw new Error('error deleting book!');
             }
-            //remove bookId from localStorage
+           //remove bookId from localStorage
             removeBookId(bookId, Auth.getUserId());
         } catch (err) {
             console.error(err);
         }
     };
 
-    //return loading message - if true
+    //check if query is loading
     if (loading) {
         return <h4>loading...</h4>
     }
     
-    //return loading message - if true
+    //check if query error
     if (error) {
         return <h4>lalala</h4>
     }
 
-    //return loading message - if true
+    //check if mutation error
     if (mutationError) {
         return <h4>meow</h4>
     }
 
     return (
     <>
-        <Container className="text-light bg-dark p-5">
+        <Container fluid className="text-light bg-dark p-5">
             <Container>
                 <h1>viewing saved fantasies!</h1>
             </Container>
