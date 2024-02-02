@@ -1,8 +1,9 @@
+// import React from 'react'; 
 import {
     Container,
     Card,
     Button,
-    Col,
+    Row,
 } from 'react-bootstrap';
 
 //graphql imports
@@ -24,11 +25,6 @@ const SavedBooks = () => {
 
     console.log(userData);
 
-    // if no user data, return message
-    if (!Auth.loggedIn()) {
-        return <h4>you need to be logged in to see this page</h4>
-    }
-
     //accept bookId as param and delete book from database
     const handleDeleteBook = async (bookId) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null; //get token
@@ -45,11 +41,6 @@ const SavedBooks = () => {
             }
             //remove bookId from localStorage
             removeBookId(bookId, Auth.getUserId());
-
-
-
-
-
         } catch (err) {
             console.error(err);
         }
@@ -72,18 +63,18 @@ const SavedBooks = () => {
 
     return (
     <>
-        <div className="text-light bg-dark p-5">
+        <Container className="text-light bg-dark p-5">
             <Container>
                 <h1>viewing saved fantasies!</h1>
             </Container>
-        </div>
+        </Container>
         <Container>
             <h2 className='pt-5'>
                 {userData.savedBooks.length
                     ? `viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'fantasy' : 'fantasies'}:`
                     : 'no saved fantasies!'}
             </h2>
-            <Col>
+            <Row>
                 {userData.savedBooks.map((book) => {
                     return (
                         <Card border='dark' key={book.bookId}>
@@ -99,7 +90,7 @@ const SavedBooks = () => {
                         </Card>
                     );
                 })}
-            </Col>
+            </Row>
         </Container>
     </>
     );

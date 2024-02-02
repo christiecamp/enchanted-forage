@@ -27,12 +27,28 @@ const authLink = setContext((_, { headers }) => {
     };
 });
 
+//defines the cache variable to create a new InMemoryCache that merges the savedBooks field of the User type
+const cache = new InMemoryCache({
+    typePolicies: {
+         User: {
+              fields: {
+                   savedBooks: {
+                        merge(existing, incoming) {
+                             return incoming;
+                        },
+                   },
+              },
+         },
+    },
+});
+
+
 //instantiate Apollo Client
 const client = new ApolloClient({
     //set up connection to the API endpoint and middleware to intercept requests
     link: authLink.concat(httpLink),
     //instantiate a new cache object
-    cache: new InMemoryCache(),
+    cache,
 });
 
 //render app

@@ -39,16 +39,15 @@ class AuthService {
           const token = this.getToken();
           if (!token) {
                // handle error here
-               console.error("No token found");
+               console.error("no token found");
                return null;
           }
-
           try {
                const { data } = decode(token);
                return data._id;
           } catch (err) {
                // handle error here
-               console.error("Invalid token", err);
+               console.error("invalid token", err);
                return null;
           }
      }

@@ -7,7 +7,6 @@ export const LOGIN_USER = gql`
             token
             user {  
                 _id
-                username
                 email
             }
         }
@@ -38,9 +37,9 @@ export const SAVE_BOOK = gql`
             bookCount
             savedBooks {
                 bookId
+                title
                 authors
                 description
-                title
                 image
                 link
             }
@@ -50,7 +49,7 @@ export const SAVE_BOOK = gql`
 
 //remove book mutation
 export const REMOVE_BOOK = gql`
-    mutation removeBook($bookId: ID!) {
+    mutation removeBook($bookId: String!) {
         removeBook(bookId: $bookId){
             _id
             username
@@ -58,14 +57,12 @@ export const REMOVE_BOOK = gql`
             bookCount
             savedBooks {
                 bookId
+                title
                 authors
                 description
-                title
                 image
                 link
             }
         }
     }
 `;
-
-//search google books api mutation
