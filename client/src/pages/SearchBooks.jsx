@@ -35,7 +35,13 @@ const SearchBooks = () => {
     //useEffect hook - save `savedBookIds` list to localStorage on component unmount
     //https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
     useEffect(() => {
-        saveBookIds(savedBookIds);
+        //check if user is logged on
+        if (Auth.loggedIn()) {        
+        const userId = Auth.getUserId();
+            if (userId) {
+                saveBookIds(savedBookIds, userId);
+            }
+        }
         console.log('saved book ids', savedBookIds);
     }, [savedBookIds]);
 
@@ -55,13 +61,16 @@ const SearchBooks = () => {
         //convert response to json
         const { items } = await response.json();
         //map through response data
-        const bookData = items.map((book) => ({
+        const allBookData = items.map((book) => ({
             bookId: book.id,
             authors: book.volumeInfo.authors || ['no author to display'],
             title: book.volumeInfo.title,
             description: book.volumeInfo.description,
             image: book.volumeInfo.imageLinks?.thumbnail || '',
         }));
+
+        //filter out books with missing information
+        const bookData = allBookData.filter((book) => book.bookId && book.title && book.description); 
 
         //state update
         setSearchedBooks(bookData);
@@ -81,9 +90,7 @@ const SearchBooks = () => {
         if (!token) {
             return false;
         }
-
-
-
+        let error;
         //make mutation request
         try {
             //set updated user object
@@ -99,12 +106,11 @@ const SearchBooks = () => {
             }
         } catch (err) {
             console.error(err);
+            error = err;
         }
-        
-
-
-
-
+        if (error) {
+            throw new Error("something went wrong!");
+        }
     };
     return (
         <>

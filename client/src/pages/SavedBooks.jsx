@@ -16,17 +16,18 @@ import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
     //useQuery hook to make query request
-    const { loading, data } = useQuery(GET_ME);
+    const { loading, data, error } = useQuery(GET_ME);
     //useMutation hook to make mutation request
-    const [removeBook] = useMutation(REMOVE_BOOK);
-  
-    //return loading message - if true
-    if (loading) {
-        return <div>loading...</div>
-    }
-
+    const [removeBook, { error: mutationError }] = useMutation(REMOVE_BOOK);
     //destructure userData from data object
     const userData = data?.me || {};
+
+    console.log(userData);
+
+    // if no user data, return message
+    if (!Auth.loggedIn()) {
+        return <h4>you need to be logged in to see this page</h4>
+    }
 
     //accept bookId as param and delete book from database
     const handleDeleteBook = async (bookId) => {
@@ -38,22 +39,35 @@ const SavedBooks = () => {
         //make mutation request
         try {
             const { data } = await removeBook({ variables: { bookId } });
-            //set updated user object
-            await data.removeBook;
+            //check if data exists
+            if (!data) {
+                throw new Error('error deleting fantasy');
+            }
             //remove bookId from localStorage
-            removeBookId(bookId);
+            removeBookId(bookId, Auth.getUserId());
+
+
+
+
+
         } catch (err) {
             console.error(err);
         }
     };
 
-    //if no user data, return message
-    if (!userData?.username || !userData.savedBooks) {
-        return (
-            <h4>
-                you need to be logged in to see this page.
-            </h4>
-        );
+    //return loading message - if true
+    if (loading) {
+        return <h4>loading...</h4>
+    }
+    
+    //return loading message - if true
+    if (error) {
+        return <h4>lalala</h4>
+    }
+
+    //return loading message - if true
+    if (mutationError) {
+        return <h4>meow</h4>
     }
 
     return (

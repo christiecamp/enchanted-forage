@@ -34,6 +34,25 @@ class AuthService {
         return localStorage.getItem('id_token');
     }
 
+    // get user id from token
+     getUserId() {
+          const token = this.getToken();
+          if (!token) {
+               // handle error here
+               console.error("No token found");
+               return null;
+          }
+
+          try {
+               const { data } = decode(token);
+               return data._id;
+          } catch (err) {
+               // handle error here
+               console.error("Invalid token", err);
+               return null;
+          }
+     }
+
     //set token to localStorage & reload page to homepage
     login(idToken) {
         localStorage.setItem('id_token', idToken);
