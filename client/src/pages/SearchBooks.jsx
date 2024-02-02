@@ -17,8 +17,8 @@ import Auth from '../utils/auth';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
 //import google book search API
-const searchGoogleBooks = async (query) => {
-    await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
+const searchGoogleBooks = (query) => {
+    return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
 };
 
 const SearchBooks = () => {
@@ -35,8 +35,9 @@ const SearchBooks = () => {
     //useEffect hook - save `savedBookIds` list to localStorage on component unmount
     //https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
     useEffect(() => {
-        return () => saveBookIds(savedBookIds);
-    });
+        saveBookIds(savedBookIds);
+        console.log('saved book ids', savedBookIds);
+    }, [savedBookIds]);
 
     //search books & set state on form submit
     const handleFormSubmit = async (event) => {
@@ -48,7 +49,7 @@ const SearchBooks = () => {
         //api call
         try {
             const response = await searchGoogleBooks(searchInput);
-            if (!response) {
+            if (!response.ok) {
                 throw new Error('something went wrong!');
             }
         //convert response to json
@@ -61,6 +62,7 @@ const SearchBooks = () => {
             description: book.volumeInfo.description,
             image: book.volumeInfo.imageLinks?.thumbnail || '',
         }));
+
         //state update
         setSearchedBooks(bookData);
         setSearchInput('');
@@ -79,15 +81,30 @@ const SearchBooks = () => {
         if (!token) {
             return false;
         }
+
+
+
         //make mutation request
         try {
-            //save book to database
-            await saveBook({ variables: { ...bookToSave } });
             //set updated user object
             setSavedBookIds([...savedBookIds, bookToSave.bookId]);
+
+            const { data } = await saveBook({
+                    variables: { bookInput: { ...bookToSave } },
+            });
+            
+            if (data?.saveBook?._id && !savedBookIds.includes(data.saveBook._id)) {
+                console.log('book saved!');
+                setSavedBookIds([...savedBookIds, data.saveBook._id]);
+            }
         } catch (err) {
             console.error(err);
         }
+        
+
+
+
+
     };
     return (
         <>
@@ -107,9 +124,9 @@ const SearchBooks = () => {
                             />
                         </Col>
                         <Col xs={12} md={4}>
-                        <Button type='submit' variant='success' size='lg'>
-                            submit
-                        </Button>
+                            <Button type='submit' variant='success' size='lg'>
+                                submit
+                            </Button>
                         </Col>
                     </Row>
                 </Form>
@@ -125,9 +142,10 @@ const SearchBooks = () => {
             <Row>
                 {searchedBooks.map((book) => {
                     return (
-                        <Card key={book.bookId} border='dark'>
+                        <Col md="4" key={book.bookId}>
+                        <Card border='dark'>
                             {book.image ? (
-                            <Card.Img src={book.image} alt={`the cover for ${book.title}`} variant='top' />
+                            <Card.Img src={book.image} alt={`the cover for ${book.title}`} variant='top'/>
                             ) : null}
                             <Card.Body>
                                 <Card.Title>{book.title}</Card.Title>
@@ -145,6 +163,7 @@ const SearchBooks = () => {
                                 )}
                             </Card.Body>
                         </Card>
+                        </Col>
                     );
                 })}
             </Row>
