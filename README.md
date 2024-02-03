@@ -6,6 +6,7 @@
 [![node.js badge](https://img.shields.io/badge/node-teal?logo=nodedotjs&logoColor=white&style=flat)](https://nodejs.org/en)
 [![express.js badge](https://img.shields.io/badge/express-plum.svg?&logo=Express&logoColor=white)](https://expressjs.com/)
 [![react badge](https://img.shields.io/badge/react-lightgrey.svg?&logo=React&logoColor=white)](https://react.dev/)
+[![mongodb badge](https://img.shields.io/badge/mongodb-salmon.svg?&logo=MongoDB&logoColor=white)](https://www.mongodb.com/)
 [![apollo badge](https://img.shields.io/badge/-apollographQL-lightblue?&logo=apollo-graphql)](https://www.apollographql.com/)
 [![heroku badge](https://img.shields.io/badge/heroku-purple.svg?&logo=Insomnia&logoColor=white)](https://heroku.com)
 [![canva badge](https://img.shields.io/badge/canva-lightyellow.svg?&logo=Canva&logoColor=white)](https://canva.com/)
@@ -33,8 +34,9 @@
 
 ### ![overview](./mermaid-melt/branding/1.png)
 
+`ENCHANTED FORAGE` is an interactive book search engine built with a [GraphQL](https://www.apollographql.com/) API & Apollo Server. The app was uses the [MERN Stack](https://www.mongodb.com/mern-stack) with a [React](https://react.dev/) **front end**, [MongoDB](https://www.mongodb.com/) **database**, and [Node.js](https://nodejs.org/en)/[Express.js](https://www.npmjs.com/package/express) **server and API**.
 
-
+>The [.npmrc](https://docs.npmjs.com/cli/v10/configuring-npm/npmrc) file will set config values specific to this project, and ensures the app will deploy properly to [Heroku](https://www.heroku.com).
 
 
 ### ![user-story](./mermaid-melt/branding/9.png)
@@ -47,7 +49,7 @@
   <img src="./prowling-predator/branding/ac.png"/>
 </p> -->
 
-### ![predator-list](./mermaid-melt/branding/11.png)
+### ![fantasy-list](./mermaid-melt/branding/11.png)
 <!-- <p align="center">
   <img src="./prowling-predator/branding/killer-list.png"/>
 </p> -->
