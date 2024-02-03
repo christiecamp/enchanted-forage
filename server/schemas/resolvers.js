@@ -50,7 +50,7 @@ const resolvers = {
                 if (!context.user) {
                     throw new Error('not logged in');
                 }
-                const updatedUser = await User.findByIdAndUpdate(
+                const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $addToSet: { savedBooks: input } },
                     { new: true, runValidators: true }
@@ -65,7 +65,7 @@ const resolvers = {
         //removeBook
         //removeBook(bookId: ID!): User
         removeBook: async (_, { bookId }, context) => {
-            const updatedUser = await User.findByIdAndUpdate(
+            const updatedUser = await User.findOneAndUpdate(
                 { _id: context.user._id },
                 { $pull: { savedBooks: { bookId } } },
                 { new: true }
