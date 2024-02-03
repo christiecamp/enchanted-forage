@@ -82,7 +82,7 @@ npm run dev
 
 1. Open the Integrated Terminal and follow the [installation](#installation) guidelines.
 
-2. Interact with `ENCHANTED FORAGE` through your local enviorment, or open the [application]() deployed on [Heroku](https://heroku.com/home).
+2. Interact with `ENCHANTED FORAGE` through your local enviorment, or open the [application](https://enchanted-forage-4414b204d74a.herokuapp.com/) deployed on [Heroku](https://heroku.com/home).
 
 3. Signup by providing an email address & creating a username/password.
 
@@ -165,7 +165,7 @@ Here's a list of technologies used:
 
 ##### [*github repo*](https://github.com/christiecamp/enchanted-forage)
 
-##### [*deployed app*]()
+##### [*deployed app*](https://enchanted-forage-4414b204d74a.herokuapp.com/)
 
 ### ![connect](./mermaid-melt/branding/7.png)
 
