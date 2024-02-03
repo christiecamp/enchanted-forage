@@ -34,7 +34,7 @@
 
 ### ![overview](./mermaid-melt/branding/1.png)
 
-`ENCHANTED FORAGE` is an interactive book search engine built with a [GraphQL](https://www.apollographql.com/) API & Apollo Server. The app was uses the [MERN Stack](https://www.mongodb.com/mern-stack) with a [React](https://react.dev/) **front end**, [MongoDB](https://www.mongodb.com/) **database**, and [Node.js](https://nodejs.org/en)/[Express.js](https://www.npmjs.com/package/express) **server and API**.
+`ENCHANTED FORAGE` is an interactive book search engine built with a [GraphQL](https://www.apollographql.com/) API and Apollo Server. The app is built using [MERN Stack](https://www.mongodb.com/mern-stack) - with a [React](https://react.dev/) **front end**, [MongoDB](https://www.mongodb.com/) **database**, and [Node.js](https://nodejs.org/en)/[Express.js](https://www.npmjs.com/package/express) **server and API**.
 
 >The [.npmrc](https://docs.npmjs.com/cli/v10/configuring-npm/npmrc) file will set config values specific to this project, and ensures the app will deploy properly to [Heroku](https://www.heroku.com).
 
@@ -91,7 +91,7 @@ npm run dev
 ##### view [demo videos](#demo) for further help
 
 
-### ![screenshot](./meramid-melt/branding/12.png)
+### ![screenshot](./mermaid-melt/branding/12.png)
              
 ##### *screenshot demonstrates `ENCHANTED FORAGE's` back end, local browser, & deployed application on **Heroku***
 
