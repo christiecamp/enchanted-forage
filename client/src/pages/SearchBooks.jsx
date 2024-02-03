@@ -27,23 +27,31 @@ const SearchBooks = () => {
     //create state - hold search field data
     const [searchInput, setSearchInput] = useState('');
     //create state - hold saved bookId values
-    const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
-    //mutation request
-    const [saveBook] = useMutation(SAVE_BOOK);
+    const [savedBookIds, setSavedBookIds] = useState([]);
 
-
-    //useEffect hook - save `savedBookIds` list to localStorage on component unmount
-    //https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
+    //get user's saved books on component load
     useEffect(() => {
         //check if user is logged on
         if (Auth.loggedIn()) {        
         const userId = Auth.getUserId();
             if (userId) {
+                saveBookIds(getSavedBookIds(userId));
+            }
+        }
+    }, []);
+    
+    //set up useEffect hook to run on component unmount
+    useEffect(() => {
+        if (Auth.loggedIn()) {
+            const userId = Auth.getUserId();
+            if (userId) {
                 saveBookIds(savedBookIds, userId);
             }
         }
-        console.log('saved book ids', savedBookIds);
     }, [savedBookIds]);
+  
+    //mutation request
+    const [saveBook] = useMutation(SAVE_BOOK);
 
     //search books & set state on form submit
     const handleFormSubmit = async (event) => {
