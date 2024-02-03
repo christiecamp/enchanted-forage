@@ -25,6 +25,10 @@ if (process.env.NODE_ENV === 'production') {
     mermaid.use(express.static(path.join(__dirname, '../client/dist')));
 }
 
+mermaid.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
+
 
 //create instance of ApolloServer and pass in schema data
 const startApolloServer = async () =>{
@@ -32,10 +36,6 @@ const startApolloServer = async () =>{
 
     //integrate Apollo server with Express application as middleware
     server.applyMiddleware({ app: mermaid });
-
-    mermaid.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-    });
 
     fins.once('open', () => {
         mermaid.listen(PORT, () => {
