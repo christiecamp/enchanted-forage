@@ -41,17 +41,17 @@
 
 ### ![user-story](./mermaid-melt/branding/9.png)
 <!-- <p align="center">
-  <img src="./prowling-predator/branding/user-story.png"/>
+  <img src="./mermaid-melt/branding/user-story.png"/>
 </p> -->
 
 ### ![acceptance-criteria](./mermaid-melt/branding/10.png)
 <!-- <p align="center">
-  <img src="./prowling-predator/branding/ac.png"/>
+  <img src="./mermaid-melt/branding/ac.png"/>
 </p> -->
 
 ### ![fantasy-list](./mermaid-melt/branding/11.png)
 <!-- <p align="center">
-  <img src="./prowling-predator/branding/killer-list.png"/>
+  <img src="./mermaid-melt/branding/killer-list.png"/>
 </p> -->
 
 #
@@ -88,7 +88,7 @@ npm run dev
 3. 
 
 
-      ##### view [demo videos](#demo) for further help
+##### view [demo videos](#demo) for further help
 
 
 ### ![screenshot](./meramid-melt/branding/12.png)
@@ -113,21 +113,16 @@ Here's a list of technologies used:
 
 2. [Express.js](<(https://expressjs.com)>) - a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
 
-3. [Webpack](https://webpack.js.org/) - a JavaScript module bundler that is commonly used with [React](https://react.dev/) to bundle and manage dependencies, with help from:
-    * [webpack-cli](https://www.npmjs.com/package/webpack-cli)
-    * [webpack-dev-server](https://webpack.js.org/configuration/dev-server/)
-    * [webpack-pwa-manifest](https://www.npmjs.com/package/webpack-pwa-manifest)
-    * [workbox-webpack-plugin](https://www.npmjs.com/package/workbox-webpack-plugin)
-    * [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin)
+3. 
 
 
 4. [Concurrently](https://www.npmjs.com/package/concurrently) - a Node.js tool that runs multiple commands concurrently.
 
-5. [if-env](https://www.npmjs.com/package/if-env) - a Node.js tool that simplifies development to run `npm start` in all enviorments & run correct scripts.
+5.
 
 6. [http-server](https://www.npmjs.com/package/http-server) - simple command-line static HTTP server.
 
-7. [css-loader](https://www.npmjs.com/package/css-loader) - a Node.js tool that interprets `@import` and `url()` & resolves them.
+7. 
 
 8. [Nodemon](https://www.npmjs.com/package/nodemon) - a Node.js tool that helps develop applications by automatically restarting the node application when file changes in the directory are detected.
 
