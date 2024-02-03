@@ -1,18 +1,18 @@
 const { User } = require('../models');
-const { signToken, AuthentictionError } = require('../utils/auth');
+const { signToken, AuthenticationError } = require('../utils/auth');
 
 //resolvers - functions that actually execute the queries and mutations
 const resolvers = {
     //query - get user data
     Query: {
-        me: async (parent, args, context) => {
+        me: async (_, args, context) => {
             if (context.user) {
-                const userData = await User.findOne({ _id: context.user.id })
+                const userData = await User.findOne({ _id: context.user._id })
                 .select('-__v -password')
                 .populate('savedBooks');
                 return userData;
             }
-            throw new Error('you are not logged in');
+            throw new Error('not logged in');
         }
     },
 
@@ -45,32 +45,38 @@ const resolvers = {
 
         //update user - save book
         //saveBook(input: BookInput): User
-        saveBook: async (parent, { input }, context) => {
-            if (context.user) {
+        saveBook: async (_, { input }, context) => {
+            try {
+                if (!context.user) {
+                    throw new Error('not logged in');
+                }
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $push: { savedBooks: input } },
-                    { new: true }
+                    { $addToSet: { savedBooks: input } },
+                    { new: true, runValidators: true }
                 );
                 return updatedUser;
+            } catch (err) {
+                console.log(err);
+                throw new Error(err);
             }
-            throw new AuthenticationError('you are not logged in');
         },
         
         //removeBook
         //removeBook(bookId: ID!): User
-        removeBook: async (parent, { bookId }, context) => {
-            if (context.user) {
-                const updatedUser = await User.findOneAndUpdate(
-                    { _id: context.user._id },
-                    { $pull: { savedBooks: { bookId } } },
-                    { new: true }
-                );
-                return updatedUser;
+        removeBook: async (_, { bookId }, context) => {
+            const updatedUser = await User.findOneAndUpdate(
+                { _id: context.user._id },
+                { $pull: { savedBooks: { bookId } } },
+                { new: true }
+            );
+            if (!updatedUser) {
+                throw new Error('could not find user with this id');
             }
-            throw new AuthenticationError('you are not logged in');
-        },
+            return updatedUser;
+        }
     },
 };
+
 
 module.exports = resolvers;

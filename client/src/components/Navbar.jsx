@@ -17,8 +17,8 @@ const AppNavbar = () => {
             google books search
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
-          <Navbar.Collapse id='navbar' className='d-flex flex-row-reverse'>
-            <Nav className='ml-auto d-flex'>
+          <Navbar.Collapse id='navbar'>
+            <Nav className='ms-auto text-end'>
               <Nav.Link as={Link} to='/'>
                 forage fantasies
               </Nav.Link>
