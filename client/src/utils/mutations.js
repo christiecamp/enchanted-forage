@@ -7,7 +7,9 @@ export const LOGIN_USER = gql`
             token
             user {  
                 _id
+                username
                 email
+                password
             }
         }
     }
@@ -22,6 +24,7 @@ export const ADD_USER = gql`
                 _id
                 username
                 email
+                password
             }
         }
     }       
@@ -37,8 +40,8 @@ export const SAVE_BOOK = gql`
             bookCount
             savedBooks {
                 bookId
-                title
                 authors
+                title
                 description
                 image
                 link
@@ -57,8 +60,8 @@ export const REMOVE_BOOK = gql`
             bookCount
             savedBooks {
                 bookId
-                title
                 authors
+                title
                 description
                 image
                 link

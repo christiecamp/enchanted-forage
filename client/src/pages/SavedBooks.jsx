@@ -17,11 +17,11 @@ import { REMOVE_BOOK } from '../utils/mutations';
 
 const SavedBooks = () => {
     //useQuery hook to make query request
-    const { loading, data, error } = useQuery(GET_ME);
+    const { loading, data } = useQuery(GET_ME);
     //get userData from query
     const userData = data?.me;
     //useMutation hook to make mutation request
-    const [removeBook, { error: mutationError }] = useMutation(REMOVE_BOOK);
+    const [removeBook] = useMutation(REMOVE_BOOK);
 
     console.log(userData);
 
@@ -52,17 +52,15 @@ const SavedBooks = () => {
     if (loading) {
         return <h4>loading...</h4>
     }
-    
-    //check if query error
-    if (error) {
-        return <h4>lalala</h4>
+    //if no user data is present, redirect to homepage
+    if (!userData?.username) {
+        return (
+            <h4>
+                you need to be logged in to view this page!
+            </h4>
+        );
     }
-
-    //check if mutation error
-    if (mutationError) {
-        return <h4>meow</h4>
-    }
-
+    //if user data is present, display saved books
     return (
     <>
         <Container fluid className="text-light bg-dark p-5">

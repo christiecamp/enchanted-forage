@@ -98,26 +98,19 @@ const SearchBooks = () => {
         if (!token) {
             return false;
         }
-        let error;
         //make mutation request
         try {
-            //set updated user object
-            setSavedBookIds([...savedBookIds, bookToSave.bookId]);
+            const { data } = saveBook({
+                variables: { 
+                    input: bookToSave,
+                },
+        });
+        console.log(data);
 
-            const { data } = await saveBook({
-                    variables: { bookInput: { ...bookToSave } },
-            });
-            
-            if (data?.saveBook?._id && !savedBookIds.includes(data.saveBook._id)) {
-                console.log('book saved!');
-                setSavedBookIds([...savedBookIds, data.saveBook._id]);
-            }
+        //set updated user object
+        setSavedBookIds((preSavedBookIds) => [...preSavedBookIds, bookToSave.bookId]);
         } catch (err) {
             console.error(err);
-            error = err;
-        }
-        if (error) {
-            throw new Error("something went wrong!");
         }
     };
     return (
@@ -156,7 +149,7 @@ const SearchBooks = () => {
             <Row>
                 {searchedBooks.map((book) => {
                     return (
-                        <Col md="4" key={book.bookId}>
+                        <Col key={book.bookId} md="4">
                         <Card border='dark'>
                             {book.image ? (
                             <Card.Img src={book.image} alt={`the cover for ${book.title}`} variant='top'/>

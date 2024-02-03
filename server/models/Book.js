@@ -2,14 +2,18 @@ const { Schema } = require('mongoose');
 
 //subdocument schema for books
 const bookSchema = new Schema({
+    bookId: {
+        type: String,
+        required: true,
+    },
+    title: {
+        type: String,
+        required: true,
+    },
     authors: [
         { type: String },
     ],
     description: {
-        type: String,
-        required: true,
-    },
-    bookId: {
         type: String,
         required: true,
     },
@@ -18,10 +22,6 @@ const bookSchema = new Schema({
     },
     link: {
         type: String,
-    },
-    title: {
-        type: String,
-        required: true,
     },
 });
 
