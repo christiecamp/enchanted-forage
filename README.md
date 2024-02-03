@@ -71,7 +71,6 @@ git clone https://github.com/christiecamp/enchanted-forage.git
 ```javascript
 npm i
 ```
-
 ```javascript
 npm run dev
 ```
@@ -85,7 +84,13 @@ npm run dev
 
 2. Interact with `ENCHANTED FORAGE` through your local enviorment, or open the [application]() deployed on [Heroku](https://heroku.com/home).
 
-3. 
+3. Signup by providing an email address & creating a username/password.
+
+4. **Search for books** by keyword, author, title, etc.
+
+5. *View*, *save*, & *delete* your selected books in **VIEW FANTASIES**.
+
+6. *Logout* to leave application.
 
 
 ##### view [demo videos](#demo) for further help
