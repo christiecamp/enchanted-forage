@@ -118,26 +118,47 @@ Here's a list of technologies used:
 
 2. [Express.js](<(https://expressjs.com)>) - a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
 
-3. 
+3. [Apollo Server](https://webpack.js.org/) - an open-source, spec-compliant **GraphQL server** that's compatible with any **GraphQL client**, including [Apollo Client]().
+    * [apollo-server-express]()
 
+4. [Apollo Client]()
 
-4. [Concurrently](https://www.npmjs.com/package/concurrently) - a Node.js tool that runs multiple commands concurrently.
+4. [GraphQL](https://graphql.org/) - 
 
-5.
+5. [MongoDB]()
 
-6. [http-server](https://www.npmjs.com/package/http-server) - simple command-line static HTTP server.
+6. [Mongoose]()
 
-7. 
+7. [React]()
+      * [react-bootstrap]()
+      * [react-dom]()
+      * [react-router-dom]()
+      * [@types/react]()
+      * [@types/react-dom]()
 
-8. [Nodemon](https://www.npmjs.com/package/nodemon) - a Node.js tool that helps develop applications by automatically restarting the node application when file changes in the directory are detected.
+8. [eslint]()
+  * [eslint-plugin-react]()
+  * [eslint-plugin-react-hooks]()
+  * [eslint-plugin-react-refresh]()
 
-9. [Heroku](https://heroku.com) - used to deploy, manage, and scale the application.
+9. [vite]()
+
+10. [brypt]()
+
+11. [jsonwebtoken]()
+
+12. [jwt-decode]()
+
+13. [Concurrently](https://www.npmjs.com/package/concurrently) - a Node.js tool that runs multiple commands concurrently.
+
+14. [Nodemon](https://www.npmjs.com/package/nodemon) - a Node.js tool that helps develop applications by automatically restarting the node application when file changes in the directory are detected.
+
+15. [Heroku](https://heroku.com) - used to deploy, manage, and scale the application.
 
 
 ### ![license](./mermaid-melt/branding/5.png)
 
 ##### [mit license](./LICENSE)
-
 
 ### ![links](./mermaid-melt/branding/6.png)
 
