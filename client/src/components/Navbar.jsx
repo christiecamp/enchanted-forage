@@ -11,10 +11,10 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar bg='dark' variant='dark' expand='lg'>
+      <Navbar bg='dark' variant='dark' expand='md'>
         <Container fluid>
-          <Navbar.Brand as={Link} to='/'>
-            google books search
+          <Navbar.Brand className='text-white' as={Link} to='/'>
+            forage
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
