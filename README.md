@@ -40,9 +40,9 @@
 
 
 ### ![user-story](./mermaid-melt/branding/9.png)
-<!-- <p align="center">
+<p align="center">
   <img src="./mermaid-melt/branding/user-story.png"/>
-</p> -->
+</p>
 
 ### ![acceptance-criteria](./mermaid-melt/branding/10.png)
 <!-- <p align="center">
@@ -50,9 +50,9 @@
 </p> -->
 
 ### ![fantasy-list](./mermaid-melt/branding/11.png)
-<!-- <p align="center">
-  <img src="./mermaid-melt/branding/killer-list.png"/>
-</p> -->
+<p align="center">
+  <img src="./mermaid-melt/branding/fantasy-list.png"/>
+</p>
 
 #
 
