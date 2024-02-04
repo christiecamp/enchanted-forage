@@ -107,6 +107,10 @@ npm run dev
 
 ### ![demo](./mermaid-melt/branding/13.png)
 
+<p align="center">
+<img src="./mermaid-melt/demo/enchanted.gif"/>
+</p> 
+
 
 #
 
