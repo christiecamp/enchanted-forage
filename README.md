@@ -45,9 +45,9 @@
 </p>
 
 ### ![acceptance-criteria](./mermaid-melt/branding/10.png)
-<!-- <p align="center">
+<p align="center">
   <img src="./mermaid-melt/branding/ac.png"/>
-</p> -->
+</p>
 
 ### ![fantasy-list](./mermaid-melt/branding/11.png)
 <p align="center">
