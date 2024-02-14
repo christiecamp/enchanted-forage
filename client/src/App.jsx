@@ -1,11 +1,14 @@
 import './App.css';
+//import React and the Router
 import { Outlet } from 'react-router-dom';
+//import Apollo Client and Apollo Provider
 import {
     ApolloClient,
     ApolloProvider,
     createHttpLink,
     InMemoryCache,
 } from '@apollo/client';
+//import setContext from Apollo Client to retrieve the token
 import { setContext } from '@apollo/client/link/context';
 import Navbar from './components/Navbar';
 

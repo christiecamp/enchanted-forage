@@ -32,11 +32,11 @@ class AuthService {
         return localStorage.getItem('id_token');
     }
 
-    // get user id from token
+    //get user id from token
      getUserId() {
           const token = this.getToken();
           if (!token) {
-               // handle error here
+               //handle error here
                console.error("no token found");
                return null;
           }
@@ -44,7 +44,7 @@ class AuthService {
                const { data } = decode(token);
                return data._id;
           } catch (err) {
-               // handle error here
+               //handle error here
                console.error("invalid token", err);
                return null;
           }

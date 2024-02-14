@@ -1,11 +1,17 @@
+//import react
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+//import bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
+//import app
 import App from './App.jsx'
+//import pages
 import SearchBooks from './pages/SearchBooks.jsx'
 import SavedBooks from './pages/SavedBooks.jsx'
 
+//create router
 const router = createBrowserRouter([
+  //define routes
   {
     path: '/',
     element: <App />,
@@ -22,6 +28,7 @@ const router = createBrowserRouter([
   }
 ])
 
+//render app
 ReactDOM.createRoot(document.getElementById('root')).render(
   <RouterProvider router={router} />
 )

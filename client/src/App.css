@@ -1,7 +1,9 @@
+/* global styles */
 body {
     font-family: 'Rubik', sans-serif;
   }
   
+  /* headers */
   h1,
   h2,
   h3,
@@ -11,6 +13,7 @@ body {
     font-family: 'Rubik Mono One', sans-serif;
   }
   
+  /* small text */
   .small {
     font-weight: 300;
     font-style: italic;
